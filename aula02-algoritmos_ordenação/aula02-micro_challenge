@@ -1,0 +1,51 @@
+numeros = [5, 3, 8, 2]
+
+def bubble_sort(lista):
+    n = len(lista)
+    trocasb = 0
+
+    for i in range(n):
+        for j in range (n - 1 - i):
+            if lista[j] > lista[j + 1]:
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+                trocasb += 1
+
+    return lista, trocasb
+
+def insertion_sort(lista):
+    deslocamentos = 0
+    for i in range(1, len(lista)):
+        atual = lista[i]
+        j = i - 1
+        while j >=0 and lista[j] > atual:
+            lista[j + 1] = lista[j]
+            deslocamentos += 1  
+            j -= 1
+
+        lista[j + 1] = atual
+
+    return lista, deslocamentos
+
+def selection_sort(lista):
+    n = len(lista)
+    trocasS = 0
+
+    for i in range(n):
+        menor = i
+        for j in range(i + 1, n):
+            if lista[j] < lista[menor]:
+                menor = j
+
+        lista[i], lista[menor] = lista[menor], lista[i]
+        trocasS += 1
+
+    return lista, trocasS
+
+numeros = [5, 3, 8, 2]
+print(bubble_sort(numeros))
+
+numeros = [5, 3, 8, 2]
+print(insertion_sort(numeros))
+
+numeros = [5, 3, 8, 2]
+print(selection_sort(numeros))
