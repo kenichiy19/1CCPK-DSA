@@ -13,18 +13,22 @@ def bubble_sort(lista):
     return lista, trocasb
 
 def insertion_sort(lista):
-    deslocamentos = 0
+    comparacoes, deslocamentos = 0
     for i in range(1, len(lista)):
         atual = lista[i]
         j = i - 1
-        while j >=0 and lista[j] > atual:
-            lista[j + 1] = lista[j]
-            deslocamentos += 1  
-            j -= 1
+        while j >=0: 
+            comparacoes += 1
+            if lista[j] > atual:
+                lista[j + 1] = lista[j]
+                j -= 1
+                deslocamentos += 1
+            else:
+                break
 
         lista[j + 1] = atual
 
-    return lista, deslocamentos
+    return lista, comparacoes, deslocamentos
 
 def selection_sort(lista):
     n = len(lista)
@@ -41,11 +45,15 @@ def selection_sort(lista):
 
     return lista, trocasS
 
-numeros = [5, 3, 8, 2]
-print(bubble_sort(numeros))
+bubble, comp_b, trocas_b = bubble_sort(numeros[:])
+insertion, comp_i, trocas_i = insertion_sort(numeros[:])
+selection, comp_s, trocas_s = selection_sort(numeros[:])
 
 numeros = [5, 3, 8, 2]
-print(insertion_sort(numeros))
+print("Bubble Sort:", trocas_b, comp_b)
 
 numeros = [5, 3, 8, 2]
-print(selection_sort(numeros))
+print("Insertion Sort:", trocas_i, comp_i)
+
+numeros = [5, 3, 8, 2]
+print("Selection Sort:", trocas_s, comp_s)
